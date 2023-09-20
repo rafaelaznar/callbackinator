@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Callbackator</title>
+</head>
+
+<body>
+    <div class="container m-1">
+
+        <div class="m-5 p-5 bg-secondary text-white rounded  text-center">
+            <h1>Callbackinator</h1>
+            <p>Callback examples to practice</p>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-4 text-center">
+                <button id="1" class="btn btn-primary btn-lg">1</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="2" class="btn btn-primary btn-lg">2</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="3" class="btn btn-primary btn-lg">3</button>
+            </div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-4  text-center">
+                <button id="4" class="btn btn-primary btn-lg">4</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="5" class="btn btn-primary btn-lg">5</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="6" class="btn btn-primary btn-lg">6</button>
+            </div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-4  text-center">
+                <button id="7" class="btn btn-primary btn-lg">7</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="8" class="btn btn-primary btn-lg">8</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="9" class="btn btn-primary btn-lg">9</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        s = function () {
+            console.log("hola rafa 1");
+        }
+
+        function saluda() {
+            return function () {
+                console.log("hola rafa 2");
+            }
+        }
+
+        function saludarafa() {
+            console.log("hola rafa 3");
+        }
+
+
+        function saludarafa2() {
+            return function () {
+                console.log("hola rafa 4");
+            }
+        }
+
+        function saludarafa3() {
+            return function () {
+                return function () {
+                    console.log("hola rafa 5");
+                }
+            }
+        }
+
+        function saludarafa4() {
+            return function () {
+                return function () {
+                    console.log("hola rafa 6");
+                }
+            }()
+        }
+
+        function ejecutor(f) {
+            return f();
+        }
+
+
+        $(document).ready(function () {
+
+            $("#1").click(saluda());
+
+            $("#2").click(function () {
+                console.log("hola rafa 7");
+            });
+
+            $("#3").click(function () { console.log("hola rafa 7") });
+
+            $("#4").click(saludarafa2());
+
+            $("#5").click(saludarafa3()());
+
+            $("#6").click(saludarafa4());
+
+            $("#7").click(saludarafa);
+
+            $("#8").click(function () {
+                return function () {
+                    return function () {
+                        ejecutor(function () {
+                            console.log("hola rafa 8");
+                        });
+                    }()
+                }();
+
+            });
+
+            $("#9").click(function () {
+                ejecutor(s);
+            });
+
+            $("#0").click(function () {
+                console.log("hola rafa 10");
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
