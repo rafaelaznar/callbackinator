@@ -12,12 +12,14 @@
 <body>
     <div class="container m-1">
 
-        <div class="m-5 p-5 bg-secondary text-white rounded  text-center">
-            <h1>Callbackinator</h1>
-            <p>Callback examples to practice</p>
+        <div class="row text-center d-flex align-items-center">
+            <div class="m-5 p-5 bg-secondary text-white rounded  text-center">
+                <h1>Callbackinator</h1>
+                <p>Callback examples to practice</p>
+            </div>
         </div>
 
-        <div class="row m-5">
+        <div class="row text-center  m-5">
             <div class="col-4 text-center">
                 <button id="1" class="btn btn-primary btn-lg">1</button>
             </div>
@@ -29,7 +31,7 @@
             </div>
         </div>
 
-        <div class="row m-5">
+        <div class="row text-center m-5">
             <div class="col-4  text-center">
                 <button id="4" class="btn btn-primary btn-lg">4</button>
             </div>
@@ -53,88 +55,158 @@
             </div>
         </div>
 
+        <div class="row m-5">
+            <div class="col-4  text-center">
+                <button id="10" class="btn btn-primary btn-lg">10</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="11" class="btn btn-primary btn-lg">11</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="12" class="btn btn-primary btn-lg">12</button>
+            </div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-4  text-center">
+                <button id="13" class="btn btn-primary btn-lg">13</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="14" class="btn btn-primary btn-lg">14</button>
+            </div>
+            <div class="col-4  text-center">
+                <button id="15" class="btn btn-primary btn-lg">15</button>
+            </div>
+        </div>
+
     </div>
 
     <script>
 
-        s = function () {
-            console.log("hola rafa 1");
+        sayhelloator = function () {
+            console.log("hello from sayhelloator");
         }
 
-        function saluda() {
+        sayhello_var = function () {
+            sayhelloator();
+        }
+
+        function sayhello_func() {
+            sayhelloator();
+        }
+
+
+        function helloworld_1function_0exe() {
             return function () {
-                console.log("hola rafa 2");
+                sayhelloator();
             }
         }
 
-        function saludarafa() {
-            console.log("hola rafa 3");
+        function helloworld_1function_1exe() {
+            return sayhello_func();
         }
 
-
-        function saludarafa2() {
-            return function () {
-                console.log("hola rafa 4");
-            }
+        function helloworld_1function_0exe_B() {
+            return sayhello_func;
         }
 
-        function saludarafa3() {
+        function helloworld_2functions_0exe() {
             return function () {
                 return function () {
-                    console.log("hola rafa 5");
+                    sayhelloator();
                 }
             }
         }
 
-        function saludarafa4() {
+        function helloworld_2functions_1exe() {
             return function () {
                 return function () {
-                    console.log("hola rafa 6");
+                    sayhelloator();
                 }
             }()
         }
 
-        function ejecutor(f) {
+        function helloworld_2functions_2exe() {
+            return function () {
+                sayhello_var();
+            }()
+        }
+
+        function functionator(anything) {
+            return function () {
+                anything();
+            }
+        }
+
+        function returnator(f) {
+            return f;
+        }
+
+        function executor(f) {
             return f();
         }
 
 
         $(document).ready(function () {
 
-            $("#1").click(saluda());
-
-            $("#2").click(function () {
-                console.log("hola rafa 7");
+            $("#1").click(function () {
+                console.log("hello from anonymous function")
             });
 
-            $("#3").click(function () { console.log("hola rafa 7") });
+            $("#2").click(sayhello_var);
 
-            $("#4").click(saludarafa2());
+            $("#3").click(sayhello_func);
 
-            $("#5").click(saludarafa3()());
+            $("#4").click(helloworld_1function_0exe());
 
-            $("#6").click(saludarafa4());
+            $("#5").click(helloworld_1function_1exe);
 
-            $("#7").click(saludarafa);
+            $("#6").click(helloworld_2functions_0exe()());
 
-            $("#8").click(function () {
+            $("#7").click(helloworld_2functions_1exe());
+
+            $("#8").click(helloworld_2functions_2exe);
+
+            $("#9").click(helloworld_2functions_2exe);
+
+            $("#10").click(function () {
+                executor(sayhello_var);
+            });
+
+
+            $("#11").click(function () {
+                executor(sayhello_func);
+            });
+
+            $("#12").click(function () {
+                executor(returnator(sayhello_var));
+            });
+
+            $("#13").click(
+                functionator(
+                    helloworld_1function_1exe
+                )
+            );
+
+            $("#14").click(
+                functionator(
+                    executor(
+                        helloworld_1function_0exe_B
+                    )
+                )
+            );
+
+            $("#15").click(function () {
                 return function () {
                     return function () {
-                        ejecutor(function () {
-                            console.log("hola rafa 8");
+                        executor(function () {
+                            sayhello_var()
                         });
                     }()
                 }();
 
             });
 
-            $("#9").click(function () {
-                ejecutor(s);
-            });
-
-            $("#0").click(function () {
-                console.log("hola rafa 10");
-            });
 
         });
     </script>
